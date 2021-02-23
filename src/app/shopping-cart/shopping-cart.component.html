@@ -1,0 +1,39 @@
+<div class="cart-container">
+    <ng-container *ngIf="cart$  | async as cart">
+    <div *ngFor="let item of cart.items" class="wrapper">
+        <div class="box img-container">
+            <img src="{{ item.product.imgUrl }}" alt="product" width="50%" />
+        </div>
+        <div class="box">
+            <div><h3>Product Name</h3></div>
+            <div><p>{{ item.product.name }}</p></div>
+        </div>
+        <div class="box">
+            <div><h3>Short Description</h3></div>
+            <div><p>{{ item.product.description }}</p></div>
+        </div>  
+        <div class="box">
+            <div><h3>Qty</h3></div>
+            <div><p>{{ item.quantity }}</p></div>
+        </div> 
+        <div class="box">
+            <div><h3>Price per 1pc</h3></div>
+            <div><p>{{ item.product.price }}</p></div>
+        </div>  
+        <div class="box">
+            <div><h3>Line Total</h3></div>
+            <div><p>{{ item.totalPrice | currency: 'USD': true }}</p></div>
+        </div>   
+        <div class="box remove-container"> 
+            <a (click)="removeToCart(item.product.id)" class="btn-remove">Remove item</a>
+        </div>  
+    </div>
+    <div>
+        <a (click)="clearCart()" class="btn-remove">Clear Shopping Cart</a>
+    </div>
+    <div class="total-container">
+        <p class="total-header">Total amout for payment:</p>
+        <p class="total-price">{{ cart.totalPrice | currency: 'USD': true }}</p>
+    </div>
+    </ng-container>
+</div>
